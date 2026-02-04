@@ -4,6 +4,7 @@ from hands_detection.landmarks import mediapipe_detection_fn
 from image_collection.collect_img import frame_instuctions
 from training.randomForestTrainer import randomForestClassifier
 from inference_classifier.classifier import iClassifier
+from tensorflowModel.tensorModel import tf_trainer
 from settings.landmarks import mp_hands
 
 hands_model = mp_hands.Hands(
@@ -11,7 +12,7 @@ hands_model = mp_hands.Hands(
     model_complexity=0,
     min_detection_confidence=0.5,
     min_tracking_confidence=0.5,
-    max_num_hands=1
+    max_num_hands=1,
 )
 
 # Options menu
@@ -46,7 +47,7 @@ elif option_selected == 2:
 
 elif option_selected == 3:
     print("Training model...")
-    randomForestClassifier()
+    tf_trainer()
     exit()
 
 elif option_selected == 4:
