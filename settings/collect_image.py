@@ -1,10 +1,12 @@
 from PIL import ImageFont
-font_path = '../fonts/Roboto-Regular.ttf'  # Ruta a la fuente personalizada
-font_size = 28  # Tamaño de la fuente
-DATA_DIR = './data'  # Carpeta para almacenar las imágenes
-DATA_VIDEO_DIR = "./video" # Carpeta para almacenar los videos
-dataset_size = 2000  # Número de imágenes por clase
-alphabet = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")  # Letras del alfabeto
+
+font_path = "../fonts/Roboto-Regular.ttf"  # Route to custom source
+font_size = 28  # Font size
+DATA_DIR_ESTATIC = "./data/dataset_estatico"  # Folder for storing images
+DATA_VIDEO_DIR = "./data/data_dinamico"  # Folder for storing videos
+dataset_size = 2000  # Number of images per class
+alphabet = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")  # letters of the alphabet
+
 
 def load_font():
     try:
@@ -12,4 +14,3 @@ def load_font():
     except IOError:
         print("Custom font not found. Using default font.")
         return None
-    
