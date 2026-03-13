@@ -6,7 +6,7 @@ DATA_DIR = "data/data_dinamico"
 N_FRAMES = 30  # The window size we configured earlier
 
 
-def preparar_directorio(clase):
+def prepare_directory(clase):
     """
     It creates the folder if it doesn't exist and calculates the frame number where we left off.
     It runs ONLY when you change the signal to avoid locking the camera.
@@ -36,7 +36,7 @@ signal_class = (
 )
 
 # We prepared the folder for the first time
-class_path, frame_counter = preparar_directorio(signal_class)
+class_path, frame_counter = prepare_directory(signal_class)
 
 # Initialize the webcam
 cap = cv2.VideoCapture(0)
@@ -123,7 +123,7 @@ while cap.isOpened():
         # Si el usuario escribió algo nuevo, actualizamos la ruta y el contador
         if new_signal != "":
             signal_class = new_signal
-            class_path, frame_counter = preparar_directorio(signal_class)
+            class_path, frame_counter = prepare_directory(signal_class)
             print(f"\n[INFO] Cambiando a seña: {signal_class}")
 
 cap.release()

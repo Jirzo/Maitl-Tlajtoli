@@ -5,10 +5,6 @@ import json
 timesteps = 30
 input_dim = 12  # 10 geometry + 2 motion deltas
 
-with open("dynamic/metadata_dinamica.json", "r") as f:
-    metadata = json.load(f)
-num_classes = metadata["num_classes"]
-
 
 def _parse_function_dynamic(example_proto):
     # We expect 30 * 12 = 360 flat values
@@ -31,6 +27,9 @@ def load_raw_dataset(tfrecord_path):
 
 
 def tf_trainer():
+    with open("dynamic/metadata_dinamica.json", "r") as f:
+        metadata = json.load(f)
+    num_classes = metadata["num_classes"]
     raw_dataset = load_raw_dataset("dynamic/landmarks_dinamicos_escalados.tfrecord")
 
     # --- CHANGE 2: We count individual videos (not boxes) ---

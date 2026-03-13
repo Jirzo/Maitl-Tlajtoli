@@ -4,11 +4,6 @@ import json
 # --- Static Configuration ---
 input_dim = 10  # 5 distances + 5 angles
 
-# 1. Read the number of classes automatically
-with open("staticSet/metadata_estatica.json", "r") as f:
-    metadata = json.load(f)
-num_classes = metadata["num_classes"]
-
 
 def _parse_function_static(example_proto):
     feature_description = {
@@ -28,6 +23,11 @@ def load_dataset_static(tfrecord_path, batch_size=32):
 
 
 def tf_static_trainer():
+    # 1. Read the number of classes automatically
+    with open("staticSet/metadata_estatica.json", "r") as f:
+        metadata = json.load(f)
+    num_classes = metadata["num_classes"]
+
     # Load the entire dataset
     full_dataset = load_dataset_static("staticSet/static_scaler_landmarks.tfrecord")
 

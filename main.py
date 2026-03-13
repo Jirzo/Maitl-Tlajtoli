@@ -1,4 +1,3 @@
-from dataset.create_dataset import datasetcCreation
 from dataset.create_dataset_tf_GF import datasetTFCreation_Static
 from dataset.create_dataset_tf_D import datasetTFCreation_Dynamic
 from hands_detection.landmarks import mediapipe_detection_fn
