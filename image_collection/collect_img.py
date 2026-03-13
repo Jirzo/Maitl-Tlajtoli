@@ -2,12 +2,15 @@ import os
 import cv2
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
-from settings.collect_image import load_font, DATA_DIR, dataset_size, alphabet
+from settings.collect_image import load_font, DATA_DIR_ESTATIC, dataset_size, alphabet
 
-cap = cv2.VideoCapture(1)
-window_name = 'Capture Images'
 
 def frame_instuctions():
+    cap = cv2.VideoCapture(0)
+    window_name = "Capture Images"
+    if not cap.isOpened():
+        print("Error: Camera could not be opened.")
+        return
     font = load_font()
     while True:
         print("\nSelect the letter to capture (A-Z). Enter '1' to exit.")
@@ -16,10 +19,12 @@ def frame_instuctions():
         if selected_letter == "1":
             break
         if selected_letter not in alphabet:
-            print("Invalid entry. Please select a letter (A-Z), the only letters that are not allowed are Ñ and LL.")
+            print(
+                "Invalid entry. Please select a letter (A-Z), the only letters that are not allowed are Ñ and LL."
+            )
             continue
 
-        class_dir = os.path.join(DATA_DIR, selected_letter)
+        class_dir = os.path.join(DATA_DIR_ESTATIC, selected_letter)
         if not os.path.exists(class_dir):
             os.makedirs(class_dir)
 
@@ -57,7 +62,12 @@ def frame_instuctions():
 
             # Draw text
             text_color = (255, 255, 255)
-            draw.text((text_x, text_y), text, font=font or ImageFont.load_default(), fill=text_color)
+            draw.text(
+                (text_x, text_y),
+                text,
+                font=font or ImageFont.load_default(),
+                fill=text_color,
+            )
 
             # Convert PIL image to OpenCV
             frame_with_text = cv2.cvtColor(np.array(pil_image), cv2.COLOR_RGB2BGR)
@@ -66,7 +76,7 @@ def frame_instuctions():
             cv2.imshow(window_name, frame_with_text)
 
             # Close'Q'
-            if cv2.waitKey(25) == ord('1'):
+            if cv2.waitKey(25) == ord("1"):
                 break
 
         # Capture images for the selected letter
@@ -83,7 +93,7 @@ def frame_instuctions():
             cv2.waitKey(25)
 
             # Save image in the format <letter>_<number>.jpg
-            filename = f'{selected_letter}_{counter:03d}.jpg'
+            filename = f"{selected_letter}_{counter:03d}.jpg"
             filepath = os.path.join(class_dir, filename)
             cv2.imwrite(filepath, frame)
             counter += 1
