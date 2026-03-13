@@ -27,10 +27,10 @@ def load_raw_dataset(tfrecord_path):
 
 
 def tf_trainer():
-    with open("dynamic/metadata_dinamica.json", "r") as f:
+    with open("dynamic/dynamic_metadata.json", "r") as f:
         metadata = json.load(f)
     num_classes = metadata["num_classes"]
-    raw_dataset = load_raw_dataset("dynamic/landmarks_dinamicos_escalados.tfrecord")
+    raw_dataset = load_raw_dataset("dynamic/dynamic_scaled_landmarks.tfrecord")
 
     # --- CHANGE 2: We count individual videos (not boxes) ---
     dataset_size = sum(1 for _ in raw_dataset)
