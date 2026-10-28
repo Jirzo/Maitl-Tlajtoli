@@ -35,7 +35,7 @@ def speak_task(text):
 
 def extract_geometric_features(hand_landmarks):
     """Extract the 10 invariant features (5 distances, 5 angles)"""
-    landmarks = np.array([[lm.x, lm.z, lm.y] for lm in hand_landmarks.landmark])
+    landmarks = np.array([[lm.x, lm.y, lm.z] for lm in hand_landmarks.landmark])
     features = []
 
     palm_vector = landmarks[9] - landmarks[0]
@@ -43,7 +43,7 @@ def extract_geometric_features(hand_landmarks):
     if palm_length == 0:
         palm_length = 1e-6
 
-    fingertips = [4, 8, 12, 15, 20]
+    fingertips = [4, 8, 12, 16, 20]
     for tip in fingertips:
         dist = np.linalg.norm(landmarks[tip] - landmarks[0])
         features.append(dist / palm_length)

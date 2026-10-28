@@ -12,10 +12,13 @@ __pycache__/
 *.json
 
 # Virtual environment
-/.env/
+venv_tf/
+.venv_tf/
+venv/
+.venv/
+env/
+.env/
 *.env
-/.venv/
-*.venv
 pipenv.lock
 Pipfile.lock
 
